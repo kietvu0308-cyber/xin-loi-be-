@@ -4,7 +4,7 @@ const titleElement = document.querySelector(".title");
 const nextButton = document.querySelector(".btn--next");
 const yesButton = document.querySelector(".btn--yes");
 const catImg = document.querySelector(".cat-img");
-
+const bgMusic = document.getElementById("bg-music");
 // Chuỗi câu chuyện và lời nhắn qua từng trang của bạn
 const story = [
   {
@@ -32,25 +32,28 @@ const story = [
 let currentStep = 0;
 
 nextButton.addEventListener("click", function () {
+  // TỰ ĐỘNG PHÁT NHẠC: Khi bấm "Tiếp tục" lần đầu, kích hoạt bật nhạc ngay
+  if (currentStep === 0) {
+    bgMusic.play().catch(error => {
+      console.log("Trình duyệt chặn phát tự động, cần tương tác thêm:", error);
+    });
+  }
+
   currentStep++;
 
-  // Nếu chưa đến trang cuối cùng
   if (currentStep < story.length) {
-    // Cập nhật hình ảnh và lời nhắn tương ứng với bước hiện tại
     catImg.src = story[currentStep].img;
     titleElement.innerHTML = story[currentStep].text;
 
-    // Nếu đã chạm đến trang cuối của câu chuyện
     if (currentStep === story.length - 1) {
-      nextButton.classList.add("hidden"); // Ẩn nút "Tiếp tục" đi
-      yesButton.classList.remove("hidden"); // Hiện nút "Đồng ý" lên
+      nextButton.classList.add("hidden");
+      yesButton.classList.remove("hidden");
     }
   }
 });
 
-// Sự kiện khi bạn gái bấm nút "Đồng ý" ở trang cuối
 yesButton.addEventListener("click", function () {
   titleElement.innerHTML = "Moahhh! Đi thôii nào công chúa của anhhh 🥰❤️✨";
   yesButton.classList.add("hidden");
-  catImg.src = "cat-yes.gif.png"; // Giữ ảnh chú mèo bắn tim hạnh phúc
+  catImg.src = "cat-yes.gif.png";
 });
