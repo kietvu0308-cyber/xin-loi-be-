@@ -16,7 +16,6 @@ body {
 .container {
   height: 100vh;
   margin: 0 auto;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,37 +31,49 @@ body {
 }
 
 .title {
-  font-size: 3.6rem;
+  font-size: 3.2rem;
   color: #f53699;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   padding: 0 2rem;
+  line-height: 1.4;
+  max-width: 50rem;
 }
 
 .buttons {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  min-height: 15rem;
+  min-height: 8rem;
 }
 
 .btn {
-  padding: 1.5rem 2.5rem;
+  padding: 1.5rem 3.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 25px; /* Làm nút bo tròn mềm mại hơn */
   color: white;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
   cursor: pointer;
   display: inline-block;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(245, 54, 153, 0.2);
 }
 
+/* Kiểu dáng cho nút Tiếp tục */
+.btn--next {
+  background-color: #ff85a2;
+}
+
+.btn--next:hover {
+  background-color: #f53699;
+  transform: translateY(-2px);
+}
+
+/* Kiểu dáng cho nút Đồng ý xuất hiện ở cuối */
 .btn--yes {
   background-color: #40c057;
+  animation: pulse 1.5s infinite; /* Hiệu ứng đập nhẹ thu hút sự chú ý */
 }
 
 .btn--yes:hover {
@@ -70,14 +81,13 @@ body {
   transform: scale(1.05);
 }
 
-.btn--no {
-  background-color: #f03e3e;
-}
-
-.btn--no:hover {
-  background-color: #c92a2a;
-}
-
 .hidden {
   display: none !important;
+}
+
+/* Hiệu ứng nhấp nháy cho nút đồng ý thêm phần sinh động */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
